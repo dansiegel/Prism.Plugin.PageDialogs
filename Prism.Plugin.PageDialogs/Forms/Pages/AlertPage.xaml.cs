@@ -26,11 +26,11 @@ namespace Prism.Forms.Pages
             }
             else
             {
-
+                ShowAcceptButton = true;
             }
         }
 
-        private bool ShowAcceptButton
+        private bool ShowAcceptButton;
 
         public static AlertPage CreateAlertPage( string title, string message, string acceptButton, string cancelButton ) =>
             new AlertPage( title, message, acceptButton, cancelButton );
