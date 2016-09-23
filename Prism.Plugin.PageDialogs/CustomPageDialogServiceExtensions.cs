@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Prism.Forms.Pages;
 using Rg.Plugins.Popup.Services;
 
-namespace Prism.Services
+namespace Prism.Services.Extensions
 {
     public static class CustomPageDialogServiceExtensions
     {
