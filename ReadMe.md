@@ -4,7 +4,7 @@ The Page Dialog plugin for [Prims.Forms](4) offers you the ability to quickly an
 
 | Package | Version |
 | ------- | ------- |
-| [Prism.Plugin.PageDialogs](1) | [![2](1)] |
+| [Prism.Plugin.PageDialogs](1) | [![2]][1] |
 
 ## Platform Initialion
 
