@@ -1,30 +1,17 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Resources;
 using Xamarin.Forms.Xaml;
 
-// Information about this assembly is defined by the following attributes. 
-// Change them to the values specific to your project.
-
 [assembly: AssemblyTitle( "Prism.Plugin.PageDialogs" )]
-[assembly: AssemblyDescription( "" )]
+[assembly: AssemblyDescription( "Provides a cross platform way to provide customized Alert Dialogs and Page Dialogs using Popup Pages" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "AvantiPoint, LLC" )]
-[assembly: AssemblyProduct( "" )]
-[assembly: AssemblyCopyright( "" )]
-[assembly: AssemblyTrademark( "" )]
-[assembly: AssemblyCulture( "" )]
+[assembly: AssemblyProduct( "Prism.Plugin.PageDialogs" )]
+[assembly: AssemblyCopyright( "Copyright © Dan Siegel 2016" )]
+[assembly: NeutralResourcesLanguage( "en" )]
 
-// The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
-// The form "{Major}.{Minor}.*" will automatically update the build and revision,
-// and "{Major}.{Minor}.{Build}.*" will update just the revision.
-
-[assembly: AssemblyVersion( "1.0.*" )]
+[assembly: AssemblyVersion( "1.0.0.0" )]
+[assembly: AssemblyFileVersion( "1.0.0.0" )]
+[assembly: AssemblyInformationalVersion( "1.0.0-pre1" )]
 
 [assembly: XamlCompilation( XamlCompilationOptions.Compile )]
-
-// The following attributes are used to specify the signing key for the assembly, 
-// if desired. See the Mono documentation for more information about signing.
-
-//[assembly: AssemblyDelaySign(false)]
-//[assembly: AssemblyKeyFile("")]
-
