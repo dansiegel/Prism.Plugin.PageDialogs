@@ -31,6 +31,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="IExtendedPageDialogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomPageDialogService.cs" />
     <Compile Include="Forms\Pages\ActionSheetPage.xaml.cs">

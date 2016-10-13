@@ -6,11 +6,17 @@ using Rg.Plugins.Popup.Services;
 
 namespace Prism.Services
 {
-    public class CustomPageDialogService : IPageDialogService
+    public class CustomPageDialogService : IExtendedPageDialogService
     {
-        #region IPageDialogService Implementation
+        #region IExtendedPageDialogService
 
-        public virtual async Task DisplayActionSheetAsync( string title, params IActionSheetButton[] buttons )
+        public async Task<string> DisplayActionSheetAsync( ActionSheetPageBase actionSheetPage )
+        {
+            await PopupNavigation.PushAsync( actionSheetPage, true );
+            return await actionSheetPage.GetActionSheetResultAsync();
+        }
+
+        public async Task DisplayActionSheetAsync( string title, string message, params IActionSheetButton[] buttons )
         {
             if( buttons == null || buttons.All( b => b == null ) )
                 throw new ArgumentException( "At least one button needs to be supplied", nameof( buttons ) );
@@ -19,7 +25,7 @@ namespace Prism.Services
             var cancelButton = buttons.FirstOrDefault( button => button != null && button.IsCancel );
             var otherButtonsText = buttons.Where( button => button != null && !( button.IsDestroy || button.IsCancel ) ).Select( b => b.Text ).ToArray();
 
-            var pressedButton = await DisplayActionSheetAsync( title, cancelButton?.Text, destroyButton?.Text, otherButtonsText );
+            var pressedButton = await DisplayActionSheetAsync( title, message, cancelButton?.Text, destroyButton?.Text, otherButtonsText );
 
             foreach( var button in buttons.Where( button => button != null && button.Text.Equals( pressedButton ) ) )
             {
@@ -30,12 +36,22 @@ namespace Prism.Services
             }
         }
 
-        public virtual async Task<string> DisplayActionSheetAsync( string title, string cancelButton, string destroyButton, params string[] otherButtons )
+        public async Task<string> DisplayActionSheetAsync( string title, string message, string cancelButton, string destroyButton, params string[] otherButtons )
         {
-            var actionSheet = GetActionSheet( title, null, cancelButton, destroyButton, otherButtons );
+            var actionSheet = GetActionSheet( title, message, cancelButton, destroyButton, otherButtons );
             await PopupNavigation.PushAsync( actionSheet, true );
             return await actionSheet.GetActionSheetResultAsync();
         }
+
+        #endregion
+
+        #region IPageDialogService Implementation
+
+        public virtual Task DisplayActionSheetAsync( string title, params IActionSheetButton[] buttons ) =>
+            DisplayActionSheetAsync( title, null, buttons );
+
+        public virtual Task<string> DisplayActionSheetAsync( string title, string cancelButton, string destroyButton, params string[] otherButtons ) =>
+            DisplayActionSheetAsync( title, null, cancelButton, destroyButton, otherButtons );
 
         public virtual async Task DisplayAlertAsync( string title, string message, string cancelButton )
         {
