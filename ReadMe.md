@@ -2,6 +2,10 @@
 
 The Page Dialog plugin for [Prims.Forms](4) offers you the ability to quickly and easily add a Page Dialog Service that doesn't rely on the bland dialogs built into Xamarin for each platform. Instead you are able to provide a custom look and feel for each of your projects. 
 
+![Current Build][buildStatus]
+[![Build status](https://ci.appveyor.com/api/projects/status/qgxb4lfslse67inq/branch/master?svg=true)](https://ci.appveyor.com/project/danjsiegel/prism-plugin-pagedialogs/branch/master)
+
+
 | Package | Version |
 | ------- | ------- |
 | [Prism.Plugin.PageDialogs](1) | [![2]][1] |
@@ -42,3 +46,5 @@ protected override void RegisterTypes()
 [2]: https://img.shields.io/nuget/vpre/Prism.Plugin.PageDialogs.svg
 [3]: https://github.com/rotorgames/Rg.Plugins.Popup
 [4]: https://github.com/PrismLibrary/Prism
+
+[buildStatus]: https://avantipoint.visualstudio.com/_apis/public/build/definitions/9ae3c52d-a8d5-4184-b4fe-94f6625d7f93/13/badge
