@@ -20,6 +20,7 @@
   <PropertyGroup>
     <PackageOutputPath>$(MSBuildThisFileDirectory)/Artifacts</PackageOutputPath>
     <PackageOutputPath Condition=" $(BUILD_ARTIFACTSTAGINGDIRECTORY) != '' ">$(BUILD_ARTIFACTSTAGINGDIRECTORY)</PackageOutputPath>
+    <IsPackable>true</IsPackable>
     <IsPackable Condition=" $(ProjectName.Contains('Sample')) ">false</IsPackable>
     <IsPackable Condition=" $(ProjectName.Contains('Test')) ">false</IsPackable>
     <GeneratePackageOnBuild>$(IsPackable)</GeneratePackageOnBuild>
