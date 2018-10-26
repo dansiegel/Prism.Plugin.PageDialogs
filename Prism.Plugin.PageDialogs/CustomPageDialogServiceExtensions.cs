@@ -27,8 +27,7 @@ namespace Prism.Services.Extensions
 
             foreach( var button in buttons.Where( button => button != null && button.Text.Equals( pressedButton ) ) )
             {
-                if( button.Command.CanExecute( button.Text ) )
-                    button.Command.Execute( button.Text );
+                button.PressButton();
 
                 return;
             }
@@ -36,7 +35,7 @@ namespace Prism.Services.Extensions
 
         public static async Task<string> DisplayActionSheetAsync( this IPageDialogService pageDialogService, ActionSheetPageBase actionSheetPage )
         {
-            await PopupNavigation.PushAsync( actionSheetPage, true );
+            await PopupNavigation.Instance.PushAsync(actionSheetPage, true);
             return await actionSheetPage.GetActionSheetResultAsync();
         }
     }

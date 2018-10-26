@@ -2,17 +2,25 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Prism.Forms.Pages;
+using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Services;
 
 namespace Prism.Services
 {
     public class CustomPageDialogService : IExtendedPageDialogService
     {
+        protected IPopupNavigation _popupNavigation { get; }
+
+        public CustomPageDialogService(IPopupNavigation popupNavigation)
+        {
+            _popupNavigation = popupNavigation;
+        }
+
         #region IExtendedPageDialogService
 
         public async Task<string> DisplayActionSheetAsync( ActionSheetPageBase actionSheetPage )
         {
-            await PopupNavigation.PushAsync( actionSheetPage, true );
+            await _popupNavigation.PushAsync( actionSheetPage, true );
             return await actionSheetPage.GetActionSheetResultAsync();
         }
 
@@ -29,9 +37,7 @@ namespace Prism.Services
 
             foreach( var button in buttons.Where( button => button != null && button.Text.Equals( pressedButton ) ) )
             {
-                if( button.Command.CanExecute( button.Text ) )
-                    button.Command.Execute( button.Text );
-
+                button.PressButton();
                 return;
             }
         }
@@ -39,7 +45,7 @@ namespace Prism.Services
         public async Task<string> DisplayActionSheetAsync( string title, string message, string cancelButton, string destroyButton, params string[] otherButtons )
         {
             var actionSheet = GetActionSheet( title, message, cancelButton, destroyButton, otherButtons );
-            await PopupNavigation.PushAsync( actionSheet, true );
+            await _popupNavigation.PushAsync(actionSheet, true);
             return await actionSheet.GetActionSheetResultAsync();
         }
 
