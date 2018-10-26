@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <Authors>Dan Siegel</Authors>
+    <Copyright>© $([System.DateTime]::Now.Year) Dan Siegel</Copyright>
+    <PackageIconUrl>http://prismlibrary.github.io/images/prism-logo-graphic-128.png</PackageIconUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/dansiegel/Prism.Plugin.PageDialogs/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/dansiegel/Prism.Plugin.PageDialogs</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dansiegel/Prism.Plugin.PageDialogs.git</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <!-- Root control Version Prefix -->
+    <VersionPrefix>1.1.0</VersionPrefix>
+  </PropertyGroup>
+
+  <!-- CI Helpers -->
+  <PropertyGroup>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)/Artifacts</PackageOutputPath>
+    <PackageOutputPath Condition=" $(BUILD_ARTIFACTSTAGINGDIRECTORY) != '' ">$(BUILD_ARTIFACTSTAGINGDIRECTORY)</PackageOutputPath>
+    <IsPackable Condition=" $(ProjectName.Contains('Sample')) ">false</IsPackable>
+    <IsPackable Condition=" $(ProjectName.Contains('Test')) ">false</IsPackable>
+    <GeneratePackageOnBuild>$(IsPackable)</GeneratePackageOnBuild>
+    <IS_PREVIEW Condition=" $(IS_PREVIEW) == '' ">false</IS_PREVIEW>
+    <IS_RELEASE Condition=" $(IS_RELEASE) == '' ">false</IS_RELEASE>
+    <VersionPrefix Condition=" $(BUILD_BUILDNUMBER) != '' ">$(VersionPrefix).$(BUILD_BUILDNUMBER)</VersionPrefix>
+    <VersionSuffix>ci</VersionSuffix>
+    <VersionSuffix Condition=" $(IS_PREVIEW) ">pre</VersionSuffix>
+    <VersionSuffix Condition=" $(IS_RELEASE) "></VersionSuffix>
+  </PropertyGroup>
+</Project>
