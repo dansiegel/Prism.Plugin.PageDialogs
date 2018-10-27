@@ -1,17 +1,12 @@
-﻿using System;
+﻿using Prism.Services;
+using System;
 using System.Threading.Tasks;
 
 namespace Prism.Forms.Pages
 {
     public interface IAlertPage
     {
-        string Title { get; set; }
-
-        string Message { get; set; }
-
-        string AcceptText { get; set; }
-
-        string CancelText { get; set; }
+        AlertDialogRequest Request { get; }
 
         event EventHandler<bool> OnOptionSelected;
 

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:ActionSheetPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+                           xmlns:pages="clr-namespace:Prism.Forms.Pages"
+                           xmlns:xaml="clr-namespace:Prism.Forms"
+                           x:Name="self"
+                           x:Class="Prism.Forms.Pages.ActionSheetPage">
+  <Grid BackgroundColor="White"
+        BindingContext="{x:Reference self}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <BoxView BackgroundColor="{Binding TitleBarColor, Mode=OneTime}" />
+    <Label Text="{Binding Title, Mode=OneTime}"
+           HorizontalOptions="Center"
+           TextColor="{Binding TitleColor, Mode=OneTime}" />
+    <ListView Grid.Row="1"
+              ItemsSource="{Binding Options, Mode=OneTime}"
+              Style="{Binding OptionsListStyle, Mode=OneTime}"
+              Header="{Binding Message, Mode=OneTime}">
+      <ListView.Behaviors>
+        <behaviors:EventToCommandBehavior EventName="ItemTapped"
+                                          Command="{Binding InvokeButtonCommand, Mode=OneTime}"
+                                          EventArgsParameterPath="Item" />
+      </ListView.Behaviors>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding Text, Mode=OneTime}" />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <BoxView BackgroundColor="{Binding FooterBarColor, Mode=OneTime}" Grid.Row="2" />
+    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="2">
+      <Button Text="{Binding CancelButton.Text, Mode=OneTime}"
+              HorizontalOptions="Start"
+              Style="{Binding CancelButtonStyle, Mode=OneTime}"
+              Command="{Binding InvokeButtonCommand, Mode=OneTime}"
+              CommandParameter="{Binding CancelButton, Mode=OneTime}"
+              IsVisible="{xaml:HasActionSheetButton CancelButton}" />
+      <Button Text="{Binding DestroyButton.Text, Mode=OneTime}"
+              HorizontalOptions="End"
+              Style="{Binding DestroyButtonStyle, Mode=OneTime}"
+              Command="{Binding InvokeButtonCommand, Mode=OneTime}"
+              CommandParameter="{Binding DestroyButton, Mode=OneTime}"
+              IsVisible="{xaml:HasActionSheetButton DestroyButton}" />
+    </StackLayout>
+  </Grid>
+</pages:ActionSheetPageBase>

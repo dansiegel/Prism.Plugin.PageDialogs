@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:AlertPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                     xmlns:pages="clr-namespace:Prism.Forms.Pages"
+                     xmlns:xaml="clr-namespace:Prism.Forms"
+                     x:Class="Prism.Forms.Pages.AlertPage">
+  <Grid BackgroundColor="White">
+    <BoxView BackgroundColor="{Binding TitleBarBackgroundColor, Mode=OneTime}" />
+    <Label Text="{Binding Request.Title, Mode=OneTime}"
+           Style="{Binding TitleStyle, Mode=OneTime}" />
+    <Label Grid.Row="1"
+           WidthRequest="250"
+           Text="{Binding Request.Message, Mode=OneTime}"
+           Style="{Binding MessageStyle, Mode=OneTime}" />
+    <Button Grid.Row="2"
+            Text="{Binding Request.AcceptText, Mode=OneTime}"
+            Style="{Binding AcceptButtonStyle, Mode=OneTime}"
+            IsVisible="{xaml:IsEnabled}" />
+    <Button Grid.Row="2"
+            Text="{Binding Request.CancelText, Mode=OneTime}"
+            Style="{Binding CancelButtonStyle, Mode=OneTime}"
+            IsVisible="{xaml:IsEnabled}" />
+  </Grid>
+</pages:AlertPageBase>

@@ -2,16 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Plugin.PageDialogs", "Prism.Plugin.PageDialogs\Prism.Plugin.PageDialogs.csproj", "{A7722F7D-4596-4F94-94CD-B60CFBF057D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Plugin.PageDialogs", "src\Prism.Plugin.PageDialogs\Prism.Plugin.PageDialogs.csproj", "{A7722F7D-4596-4F94-94CD-B60CFBF057D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB6520C8-5315-47EF-998D-F194D553CF58}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		azure-pipelines.yml = azure-pipelines.yml
-		Directory.build.props = Directory.build.props
-		NuGet.config = NuGet.config
-		ReadMe.md = ReadMe.md
-	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{837DCFE1-3D36-4AA5-8732-E92F6970D201}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,7 +22,11 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A7722F7D-4596-4F94-94CD-B60CFBF057D0} = {837DCFE1-3D36-4AA5-8732-E92F6970D201}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BF2668EE-7D4C-4B74-A505-013B2D1EFA19}
+		        SolutionGuid = {BF2668EE-7D4C-4B74-A505-013B2D1EFA19}
+		SolutionGuid = {D5F8880C-463C-4E43-A6A6-CCE1C4649620}
 	EndGlobalSection
 EndGlobal
