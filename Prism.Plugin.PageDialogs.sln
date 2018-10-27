@@ -5,6 +5,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Plugin.PageDialogs", "src\Prism.Plugin.PageDialogs\Prism.Plugin.PageDialogs.csproj", "{A7722F7D-4596-4F94-94CD-B60CFBF057D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB6520C8-5315-47EF-998D-F194D553CF58}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		azure-pipelines.yml = azure-pipelines.yml
+		Directory.build.props = Directory.build.props
+		NuGet.config = NuGet.config
+		ReadMe.md = ReadMe.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{837DCFE1-3D36-4AA5-8732-E92F6970D201}"
 EndProject
