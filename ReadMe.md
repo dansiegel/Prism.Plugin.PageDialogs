@@ -12,31 +12,73 @@ The Page Dialog plugin for [Prims.Forms](4) offers you the ability to quickly an
 
 This plugin itself requires no platform initialization however you will need to initialize [Rg.Plugin.Popup][3]
 
-## Customized Look & Feel
-
-To make this all work and still provide your custom look and feel you can simply inherit from our custom page dialog service and register it.
+In your Prism Application's `RegisterTypes` you need to do the following:
 
 ```cs
-public class MyPageDialogService : CustomPageDialogService
+protected override void RegisterTypes(IContainerRegistry containerRegistry)
 {
-     protected override ActionSheetPageBase GetActionSheet( string title, string message, string cancelButton, string destroyButton, string[] otherButtons )
+    containerRegistry.RegisterPopupDialogService();
+
+    // If you're using Prism.Plugin.Popups you don't need to do anything else
+    // otherwise you can simply add the following:
+    containerRegistry.RegisterInstance<IPopupNavigation>(PopupNavigation.Instance);
+}
+```
+
+## Customized Look & Feel
+
+The built in ActionSheetPage and AlertPage have static properties which you can set at App startup to control the look of the built in pages.
+
+```cs
+protected override void OnInitialized()
+{
+    AlertPage.DefaultTitleBarBackgroundColor = (Color)Resources["PrimaryColor"];
+    AlertPage.DefaultTitleStyle = (Style)Resources["AlertTitleStyle"];
+    AlertPage.DefaultMessageStyle = (Style)Resources["AlertMessageStyle"];
+}
+```
+
+### Adding a custom Factory
+
+In the event that simply providing custom default styles isn't enough, you can implement a custom IPopupDialogFactory. To control which style Dialog you simply need to set the Style property in either the ActionSheetRequest or AlertDialogRequest. The default `PopupDialogFactory` ignores the style key. The intent is that you are able to create an Alert or Action Sheet Dialog based on a Style key using.
+
+```cs
+public class MyFactory : IPopupDialogFactory
+{
+    public ActionSheetPageBase GetActionSheet(ActionSheetRequest request)
     {
-        // return your custom ActionSheetPage as long as it inherits from ActionSheetPageBase
+        switch(request.Style)
+        {
+            case "Foo":
+                return new FooActionSheetPage(request);
+            case "Bar":
+                return new BarActionSheetPage(request);
+            default:
+                new ActionSheetPage(request);
+        }
     }
 
-    protected override AlertPageBase GetAlertPage( string title, string message, string acceptButton, string cancelButton )
+    public AlertPageBase GetAlertPage(AlertDialogRequest request)
     {
-        // return your custom AlertPage as long as it inherits from AlertPageBase
+        switch(request.Style)
+        {
+            case "Foo":
+                return new FooAlertPage(request);
+            case "Bar":
+                return new BarAlertPage(request);
+            default:
+                return AlertPage(request);
+        }
     }
 }
 ```
 
-In your PrismApplication class
+When using a custom Factory you can easily register both your factory and the PopupDialogService
 
 ```cs
-protected override void RegisterTypes()
+protected override void RegisterTypes(IContainerRegistry containerRegistry)
 {
-    Container.Register<IPageDialogService,CustomPageDialogService>();
+    containerRegistry.RegisterPopupDialogServiceWithFactory<MyFactory>();
 }
 ```
 
