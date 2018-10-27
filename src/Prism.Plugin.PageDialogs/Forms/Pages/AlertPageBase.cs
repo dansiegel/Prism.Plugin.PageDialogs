@@ -1,6 +1,5 @@
 ﻿using Prism.Services;
 using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
 
@@ -26,7 +25,6 @@ namespace Prism.Forms.Pages
                 while(!eventFired) { }
             }).ConfigureAwait(false);
 
-            await PopupNavigation.Instance.PopAsync();
             return result;
         }
 

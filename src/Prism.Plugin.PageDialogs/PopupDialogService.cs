@@ -25,7 +25,9 @@ namespace Prism.Services
         protected async Task DisplayActionSheetAsync(ActionSheetPageBase actionSheetPage, bool animated)
         {
             await _popupNavigation.PushAsync(actionSheetPage, animated);
-            await actionSheetPage.GetActionSheetResultAsync();
+            var button = await actionSheetPage.GetActionSheetResultAsync();
+            button.PressButton();
+            await _popupNavigation.RemovePageAsync(actionSheetPage, animated);
         }
 
         #region IPageDialogService Implementation
@@ -68,16 +70,13 @@ namespace Prism.Services
             return result;
         }
 
-        //public virtual async Task DisplayAlertAsync( string title, string message, string cancelButton )
-        //{
-        //    await DisplayAlertAsync( title, message, null, cancelButton );
-        //}
-
         public virtual async Task<bool> DisplayAlertAsync(AlertDialogRequest request)
         {
             var alertPage = _popupDialogFactory.GetAlertPage(request);
             await _popupNavigation.PushAsync(alertPage, request.Animated ?? true);
-            return await alertPage.GetAlertPageResultAsync();
+            var result = await alertPage.GetAlertPageResultAsync();
+            await _popupNavigation.RemovePageAsync(alertPage, request.Animated ?? true);
+            return result;
         }
 
         public virtual Task<bool> DisplayAlertAsync(string title, string message, string acceptButton, string cancelButton) =>

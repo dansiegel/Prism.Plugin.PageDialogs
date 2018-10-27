@@ -1,14 +1,11 @@
-﻿using System;
+﻿using Prism.Commands;
+using Prism.Services;
+using Rg.Plugins.Popup.Pages;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Prism.Commands;
-using Prism.Services;
-using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
-using Xamarin.Forms;
 
 namespace Prism.Forms.Pages
 {
@@ -53,7 +50,6 @@ namespace Prism.Forms.Pages
                 }
             } );
 
-            await PopupNavigation.Instance.PopAsync();
             return result;
         }
 
@@ -61,24 +57,11 @@ namespace Prism.Forms.Pages
 
         #region Private Properties
 
-        protected bool eventInvoked;
+        protected bool eventInvoked { get; set; }
 
-        protected IActionSheetButton result;
+        protected IActionSheetButton result { get; set; }
 
         #endregion
-
-        //public void SendSelectedOptionEvent( string message )
-        //{
-        //    result = string.Empty;
-        //    if( Options.Any( x => x == message ) || message == CancelButtonText || message == DestroyButtonText )
-        //    {
-        //        result = message;
-        //    }
-
-        //    SelectedOptionEvent.Invoke( this, result );
-        //    eventInvoked = true;
-        //}
-
 
         protected override void OnDisappearing()
         {
