@@ -8,7 +8,7 @@ The Page Dialog plugin for [Prims.Forms](4) offers you the ability to quickly an
 | ------- | ------- |
 | [Prism.Plugin.PageDialogs](1) | [![2]][1] |
 
-## Platform Initialion
+## Platform Initialization
 
 This plugin itself requires no platform initialization however you will need to initialize [Rg.Plugin.Popup][3]
 
